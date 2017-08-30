@@ -60,7 +60,7 @@
       "url": "https://github.com/assaf/node-replay/blob/master/MIT-LICENSE"
     }
   ],
-  "main": "./lib",
+  "main": "./src",
   "maintainers": [
     {
       "name": "assaf",
