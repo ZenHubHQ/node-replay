@@ -97,6 +97,13 @@ module.exports = class Matcher {
       if (this.headers[name] !== headers[name])
         return false;
     }
+    if (this.headers['if-none-match'] !== headers['if-none-match']) {
+      return false;
+    }
+    if (this.headers['if-modified-since'] !== headers['if-modified-since']) {
+      return false;
+    }
+
     if (body) {
       let data = '';
       for (let chunks of body)
