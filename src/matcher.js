@@ -97,6 +97,18 @@ module.exports = class Matcher {
       if (this.headers[name] !== headers[name])
         return false;
 
+    // ALWAYS Matches if-none-match/if-modified-since headers
+    // This accounts for test cases where we send a request possibly
+    // expecting a 304. Without this change, replay would match the first
+    // available file
+    if (this.headers["if-none-match"] !== headers["if-none-match"]) {
+      return false;
+    }
+    if (this.headers["if-modified-since"] !== headers["if-modified-since"]) {
+      return false;
+    }
+
+
     if (this.body && body) {
       let data = '';
       for (let chunks of body)
